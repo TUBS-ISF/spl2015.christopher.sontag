@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="Adventure">
+				<feature mandatory="true" name="Base">
+					<description>
+						Die Code-Basis
+					</description>
+				</feature>
+				<and abstract="true" mandatory="true" name="Settings">
+					<description>
+						Die möglichen Settings, in die ein Benutzer vorstoßen kann.
+					</description>
+					<and abstract="true" mandatory="true" name="Path">
+						<description>
+							Es gibt verschiedene Pfade, über die Spieler zu anderen Pfaden oder Gebäuden kommen.
+						</description>
+						<feature name="Beach">
+							<description>
+								Ein Strand-Setting
+							</description>
+						</feature>
+						<feature name="Mountain">
+							<description>
+								Ein Berg-Setting
+							</description>
+						</feature>
+						<feature mandatory="true" name="Field">
+							<description>
+								Ein Feld-Setting
+							</description>
+						</feature>
+						<feature name="Forest">
+							<description>
+								Ein Wald-Setting
+							</description>
+						</feature>
+					</and>
+					<and abstract="true" name="Buildings">
+						<description>
+							Gebäude (bewohnt oder unbewohnt), auf welche ein Spieler treffen kann.
+						</description>
+						<feature name="Town">
+							<description>
+								Städte bieten mehreren Personen Platz
+							</description>
+						</feature>
+						<feature name="House">
+							<description>
+								Ein einsames Haus in der Wildnis, das in allen Settings angetroffen werden kann
+							</description>
+						</feature>
+					</and>
+				</and>
+				<and abstract="true" name="Meeting">
+					<description>
+						Ein Gespräch zwischen Spieler und Computer
+					</description>
+					<feature name="Quests">
+						<description>
+							Der Computer kann dem Spieler Quests geben
+						</description>
+					</feature>
+					<feature name="Hints">
+						<description>
+							Bewohner können Tipps geben. Achtung: Es muss nicht nützlich sein.
+						</description>
+					</feature>
+				</and>
+				<feature name="Introdution">
+					<description>
+						Eine Einführung in die Welt bevor das Spiel startet 
+					</description>
+				</feature>
+				<feature name="Heronaming">
+					<description>
+						Es kann ein Name für die gespielte Person genannt werden
+					</description>
+				</feature>
+				<and abstract="true" name="Special-Events">
+					<description>
+						Random-Events, die in verschiedenen Settings zu unbekannten Zeiten eintreten können
+					</description>
+					<feature name="Chests">
+						<description>
+							Eine Kiste kann auftauchen
+						</description>
+					</feature>
+					<feature name="Illness">
+						<description>
+							Krankheiten schaden der Gesundheit
+						</description>
+					</feature>
+					<feature name="Fights">
+						<description>
+							Ein Monster taucht auf und möchte kämpfen. Achtung: Evtl. ist es auch ein harmloses Bambi!
+						</description>
+					</feature>
+				</and>
+				<feature name="Inventory"/>
+				<feature name="Items">
+					<description>
+						Der Spieler kann Items bei sich tragen
+					</description>
+				</feature>
+				<feature name="Armor">
+					<description>
+						Der Spieler kann Rüstung anziehen
+					</description>
+				</feature>
+				<and name="PlayerStats">
+					<description>
+						Der Spieler hat Statuswerte, die seinen Zustand abbilden
+					</description>
+					<feature name="Stamina">
+						<description>
+							Ausdauer legt fest, welche Attacken ausführbar sind und der Spieler weiterlaufen kann
+						</description>
+					</feature>
+					<feature name="Health">
+						<description>
+							Die Gesundheit des Spielers
+						</description>
+					</feature>
+					<feature name="Lives">
+						<description>
+							Die Lebensanzahl des Spielers
+						</description>
+					</feature>
+				</and>
+				<feature name="Map">
+					<description>
+						Die Map gibt erkundete Teile der Karte an
+					</description>
+				</feature>
+				<or abstract="true" name="Visualisation">
+					<description>
+						Eine GUI- oder 3D-Umsetzung
+					</description>
+					<feature mandatory="true" name="GUI">
+						<description>
+							Eine einfache GUI Umsetzung
+						</description>
+					</feature>
+					<feature mandatory="true" name="3D">
+						<description>
+							3D, wie ein modernes Spiel
+						</description>
+					</feature>
+				</or>
+				<feature name="Day&amp;Night-Cycle">
+					<description>
+						Ein Tag-Nacht-Zyklus sorgt für Zeiten im Spiel
+					</description>
+				</feature>
+				<feature name="Resting">
+					<description>
+						Wenn die Ausdauer am Boden ist, muss der Spieler rasten und sich erholen. Dabei verstreicht Zeit
+					</description>
+				</feature>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<disj>
+						<var>Items</var>
+						<disj>
+							<var>Armor</var>
+							<var>Quests</var>
+						</disj>
+					</disj>
+					<var>Inventory</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Meeting</var>
+					<disj>
+						<var>Town</var>
+						<var>House</var>
+					</disj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Map</var>
+					<var>3D</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Heronaming</var>
+					<var>Introdution</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Illness</var>
+					<var>Health</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Chests</var>
+					<conj>
+						<var>Items</var>
+						<var>Inventory</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Resting</var>
+					<conj>
+						<var>Stamina</var>
+						<var>Day&amp;Night-Cycle</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<disj>
+						<var>Armor</var>
+						<disj>
+							<var>Health</var>
+							<var>Fights</var>
+						</disj>
+					</disj>
+					<conj>
+						<var>Armor</var>
+						<conj>
+							<var>Health</var>
+							<conj>
+								<var>Fights</var>
+								<var>Stamina</var>
+							</conj>
+						</conj>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>3D</var>
+					<conj>
+						<var>Day&amp;Night-Cycle</var>
+						<var>Map</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>3D</var>
+					<not>
+						<var>Lives</var>
+					</not>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
