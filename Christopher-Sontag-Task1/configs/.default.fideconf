@@ -11,7 +11,7 @@
 22Buildings
 22Town
 22House
-22Talking
+22Meeting
 22Quests
 22Hints
 22Introdution
@@ -26,10 +26,10 @@
 22PlayerStats
 22Stamina
 22Health
-20Lives
-21Map
-21Visualisation
+22Lives
+22Map
+22Visualisation
 22GUI
-123D
-21Day&Night-Cycle
+223D
+22Day&Night-Cycle
 22Resting

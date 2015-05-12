@@ -2,160 +2,167 @@
 	<featureModel chosenLayoutAlgorithm="1">
 		<struct>
 			<and abstract="true" mandatory="true" name="Adventure">
+				<description>
+					A little adventure for spl 2015
+				</description>
 				<feature mandatory="true" name="Base">
 					<description>
-						Die Code-Basis
+						The code basis
 					</description>
 				</feature>
-				<and abstract="true" mandatory="true" name="Settings">
+				<and abstract="true" mandatory="true" name="Scenes">
 					<description>
-						Die möglichen Settings, in die ein Benutzer vorstoßen kann.
+						Possible Scenes
 					</description>
 					<and abstract="true" mandatory="true" name="Path">
 						<description>
-							Es gibt verschiedene Pfade, über die Spieler zu anderen Pfaden oder Gebäuden kommen.
+							Different Settings for paths
 						</description>
 						<feature name="Beach">
 							<description>
-								Ein Strand-Setting
+								Beach-Setting
 							</description>
 						</feature>
 						<feature name="Mountain">
 							<description>
-								Ein Berg-Setting
+								Mountain-Setting
 							</description>
 						</feature>
 						<feature mandatory="true" name="Field">
 							<description>
-								Ein Feld-Setting
+								Field-Setting
 							</description>
 						</feature>
 						<feature name="Forest">
 							<description>
-								Ein Wald-Setting
+								Forest-Setting
 							</description>
 						</feature>
 					</and>
 					<and abstract="true" name="Buildings">
 						<description>
-							Gebäude (bewohnt oder unbewohnt), auf welche ein Spieler treffen kann.
+							Some buildings you can visit
 						</description>
 						<feature name="Town">
 							<description>
-								Städte bieten mehreren Personen Platz
+								Towns
 							</description>
 						</feature>
 						<feature name="House">
 							<description>
-								Ein einsames Haus in der Wildnis, das in allen Settings angetroffen werden kann
+								House
 							</description>
 						</feature>
 					</and>
 				</and>
-				<and abstract="true" name="Meeting">
+				<and abstract="true" name="Talking">
 					<description>
-						Ein Gespräch zwischen Spieler und Computer
+						Talk between PC and player
 					</description>
 					<feature name="Quests">
 						<description>
-							Der Computer kann dem Spieler Quests geben
+							Quests
 						</description>
 					</feature>
 					<feature name="Hints">
 						<description>
-							Bewohner können Tipps geben. Achtung: Es muss nicht nützlich sein.
+							Possible Hints
 						</description>
 					</feature>
 				</and>
 				<feature name="Introdution">
 					<description>
-						Eine Einführung in die Welt bevor das Spiel startet 
+						Introduction to the world
 					</description>
 				</feature>
 				<feature name="Heronaming">
 					<description>
-						Es kann ein Name für die gespielte Person genannt werden
+						The possibility of naming the hero
 					</description>
 				</feature>
 				<and abstract="true" name="Special-Events">
 					<description>
-						Random-Events, die in verschiedenen Settings zu unbekannten Zeiten eintreten können
+						Random Special-Events
 					</description>
 					<feature name="Chests">
 						<description>
-							Eine Kiste kann auftauchen
+							Chests can appear
 						</description>
 					</feature>
 					<feature name="Illness">
 						<description>
-							Krankheiten schaden der Gesundheit
+							Illness can kill you
 						</description>
 					</feature>
 					<feature name="Fights">
 						<description>
-							Ein Monster taucht auf und möchte kämpfen. Achtung: Evtl. ist es auch ein harmloses Bambi!
+							Monsters are nearby and want to kill you
 						</description>
 					</feature>
 				</and>
-				<feature name="Inventory"/>
+				<feature name="Inventory">
+					<description>
+						Inventory
+					</description>
+				</feature>
 				<feature name="Items">
 					<description>
-						Der Spieler kann Items bei sich tragen
+						Items the Player can carrying
 					</description>
 				</feature>
 				<feature name="Armor">
 					<description>
-						Der Spieler kann Rüstung anziehen
+						Players Armor
 					</description>
 				</feature>
 				<and name="PlayerStats">
 					<description>
-						Der Spieler hat Statuswerte, die seinen Zustand abbilden
+						PlayerStats
 					</description>
 					<feature name="Stamina">
 						<description>
-							Ausdauer legt fest, welche Attacken ausführbar sind und der Spieler weiterlaufen kann
+							Stamina
 						</description>
 					</feature>
 					<feature name="Health">
 						<description>
-							Die Gesundheit des Spielers
+							Health
 						</description>
 					</feature>
 					<feature name="Lives">
 						<description>
-							Die Lebensanzahl des Spielers
+							Lives the player has
 						</description>
 					</feature>
 				</and>
 				<feature name="Map">
 					<description>
-						Die Map gibt erkundete Teile der Karte an
+						The map with discovered parts
 					</description>
 				</feature>
 				<or abstract="true" name="Visualisation">
 					<description>
-						Eine GUI- oder 3D-Umsetzung
+						GUI- or 3D
 					</description>
 					<feature mandatory="true" name="GUI">
 						<description>
-							Eine einfache GUI Umsetzung
+							Simple GUI
 						</description>
 					</feature>
 					<feature mandatory="true" name="3D">
 						<description>
-							3D, wie ein modernes Spiel
+							modern 3D
 						</description>
 					</feature>
 				</or>
 				<feature name="Day&amp;Night-Cycle">
 					<description>
-						Ein Tag-Nacht-Zyklus sorgt für Zeiten im Spiel
+						Day-Night-Cycle
 					</description>
 				</feature>
 				<feature name="Resting">
 					<description>
-						Wenn die Ausdauer am Boden ist, muss der Spieler rasten und sich erholen. Dabei verstreicht Zeit
+						Resting helps you getting health and stamina
 					</description>
 				</feature>
 			</and>
@@ -175,7 +182,7 @@
 			</rule>
 			<rule>
 				<imp>
-					<var>Meeting</var>
+					<var>Talking</var>
 					<disj>
 						<var>Town</var>
 						<var>House</var>
@@ -254,6 +261,18 @@
 					<not>
 						<var>Lives</var>
 					</not>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Inventory</var>
+					<var>Items</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Quests</var>
+					<var>Fights</var>
 				</imp>
 			</rule>
 		</constraints>
