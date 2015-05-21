@@ -11,7 +11,7 @@ public class Player {
     /*
      * The name of the player
      */
-    private static String name;
+    private static String name="Player";
     private static int stamina = 100, health = 100, lives = 1;
     private static List<Illness> illnessList = new ArrayList<>();
     
