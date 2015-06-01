@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="Adventure">
+				<description>
+					A little adventure for spl 2015
+				</description>
+				<feature abstract="true" mandatory="true" name="Base">
+					<description>
+						The code basis
+					</description>
+				</feature>
+				<and abstract="true" mandatory="true" name="Scenes">
+					<description>
+						Possible Scenes
+					</description>
+					<and abstract="true" mandatory="true" name="Path">
+						<description>
+							Different Settings for paths
+						</description>
+						<feature name="Beach">
+							<description>
+								Beach-Setting
+							</description>
+						</feature>
+						<feature name="Mountain">
+							<description>
+								Mountain-Setting
+							</description>
+						</feature>
+						<feature mandatory="true" name="Field">
+							<description>
+								Field-Setting
+							</description>
+						</feature>
+						<feature name="Forest">
+							<description>
+								Forest-Setting
+							</description>
+						</feature>
+					</and>
+					<and abstract="true" name="Buildings">
+						<description>
+							Some buildings you can visit
+						</description>
+						<feature name="Town">
+							<description>
+								Towns
+							</description>
+						</feature>
+						<feature name="House">
+							<description>
+								House
+							</description>
+						</feature>
+					</and>
+				</and>
+				<and abstract="true" name="Talking">
+					<description>
+						Talk between PC and player
+					</description>
+					<feature name="Quests">
+						<description>
+							Quests
+						</description>
+					</feature>
+					<feature name="Hints">
+						<description>
+							Possible Hints
+						</description>
+					</feature>
+				</and>
+				<feature name="Introdution">
+					<description>
+						Introduction to the world
+					</description>
+				</feature>
+				<feature name="Heronaming">
+					<description>
+						The possibility of naming the hero
+					</description>
+				</feature>
+				<and abstract="true" name="Events">
+					<description>
+						Random Special-Events
+					</description>
+					<feature name="Chests">
+						<description>
+							Chests can appear
+						</description>
+					</feature>
+					<feature abstract="true" name="Illness">
+						<description>
+							Illness can kill you
+						</description>
+					</feature>
+					<feature abstract="true" name="Fights">
+						<description>
+							Monsters are nearby and want to kill you
+						</description>
+					</feature>
+				</and>
+				<feature abstract="true" name="Inventory">
+					<description>
+						Inventory
+					</description>
+				</feature>
+				<feature abstract="true" name="Items">
+					<description>
+						Items the Player can carrying
+					</description>
+				</feature>
+				<feature abstract="true" name="Armor">
+					<description>
+						Players Armor
+					</description>
+				</feature>
+				<and abstract="true" name="PlayerStats">
+					<description>
+						PlayerStats
+					</description>
+					<feature abstract="true" name="Stamina">
+						<description>
+							Stamina
+						</description>
+					</feature>
+					<feature abstract="true" name="Health">
+						<description>
+							Health
+						</description>
+					</feature>
+					<feature abstract="true" name="Lives">
+						<description>
+							Lives the player has
+						</description>
+					</feature>
+				</and>
+				<feature abstract="true" name="Map">
+					<description>
+						The map with discovered parts
+					</description>
+				</feature>
+				<or abstract="true" name="Visualisation">
+					<description>
+						GUI- or 3D
+					</description>
+					<feature abstract="true" mandatory="true" name="GUI">
+						<description>
+							Simple GUI
+						</description>
+					</feature>
+					<feature abstract="true" mandatory="true" name="ThreeDimensional">
+						<description>
+							modern 3D
+						</description>
+					</feature>
+				</or>
+				<feature abstract="true" name="DayAndNightCycle">
+					<description>
+						Day-Night-Cycle
+					</description>
+				</feature>
+				<feature abstract="true" name="Resting">
+					<description>
+						Resting helps you getting health and stamina
+					</description>
+				</feature>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<disj>
+						<var>Items</var>
+						<disj>
+							<var>Armor</var>
+							<var>Quests</var>
+						</disj>
+					</disj>
+					<var>Inventory</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Talking</var>
+					<disj>
+						<var>Town</var>
+						<var>House</var>
+					</disj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Map</var>
+					<var>ThreeDimensional</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Heronaming</var>
+					<var>Introdution</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Illness</var>
+					<var>Health</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Chests</var>
+					<conj>
+						<var>Items</var>
+						<var>Inventory</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Resting</var>
+					<conj>
+						<var>Stamina</var>
+						<var>DayAndNightCycle</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<disj>
+						<var>Armor</var>
+						<disj>
+							<var>Health</var>
+							<var>Fights</var>
+						</disj>
+					</disj>
+					<conj>
+						<var>Armor</var>
+						<conj>
+							<var>Health</var>
+							<conj>
+								<var>Fights</var>
+								<var>Stamina</var>
+							</conj>
+						</conj>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>ThreeDimensional</var>
+					<conj>
+						<var>DayAndNightCycle</var>
+						<var>Map</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>ThreeDimensional</var>
+					<not>
+						<var>Lives</var>
+					</not>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Inventory</var>
+					<var>Items</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Quests</var>
+					<var>Fights</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
