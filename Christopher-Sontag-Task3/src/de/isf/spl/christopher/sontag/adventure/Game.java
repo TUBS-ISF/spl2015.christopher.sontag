@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.isf.spl.christopher.sontag.adventure.events.Quest;
 import de.isf.spl.christopher.sontag.adventure.inventory.Inventory;
+import de.isf.spl.christopher.sontag.adventure.inventory.Item;
 import de.isf.spl.christopher.sontag.adventure.scenes.Beach;
 import de.isf.spl.christopher.sontag.adventure.scenes.Field;
 import de.isf.spl.christopher.sontag.adventure.scenes.Forest;
@@ -157,7 +158,20 @@ public class Game {
 		//#ifdef Chests
 		case "DIG":
 		    if (curScene instanceof Path) {
-		        ((Path)curScene).dig();
+		        if (((Path) curScene).isDigable()) {
+		        for (Item i : inventory.getItemList()) {
+		            if (i.getName()=="Schaufel") {
+		                if (((Path)curScene).dig()) {
+		                    inventory.remove(i);
+		                }
+		            }
+		        }
+		        if (!((Path) curScene).isDigable()) {
+		            System.out.println("You don't own a shovel. Buy one.");
+		        }
+		        } else {
+		            System.out.println("You can't dig twice.");
+		        }
 		    }
 		    break;
 		//#endif

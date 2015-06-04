@@ -3,6 +3,8 @@
  */
 package de.isf.spl.christopher.sontag.adventure.scenes;
 
+import java.util.Random;
+
 import de.isf.spl.christopher.sontag.adventure.Game;
 import de.isf.spl.christopher.sontag.adventure.events.Quest;
 import de.isf.spl.christopher.sontag.adventure.events.Quest.QuestType;
@@ -51,8 +53,23 @@ public class Beach extends Path {
     //#ifdef Chests
     @Override
     public boolean dig() {
-        System.out.println("Here is nothing");
-        return false;
+        this.isDigable = false;
+        Random r = new Random();
+        System.out.println("Joho and a bottle of rum.");
+        if (r.nextBoolean()) {
+            int gold = (r.nextInt(200)+10);
+            System.out.println("You have found a chest with "+gold+ " gold");
+            Game.inventory.addGold(gold);
+            return false;
+        }
+        System.out.print("You should drink much less rum. You have no luck");
+        if (r.nextBoolean()) {
+            System.out.println(" and you destroyed your shovel. You must buy a new one.");
+            return true;
+        } else {
+            System.out.println();
+            return false;
+        }
     }
     //#endif
     

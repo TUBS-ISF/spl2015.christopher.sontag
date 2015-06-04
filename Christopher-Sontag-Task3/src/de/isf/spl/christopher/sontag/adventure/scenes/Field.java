@@ -51,7 +51,7 @@ public class Field extends Path {
     //#ifdef Chests
     @Override
     public boolean dig() {
-        System.out.println("Here is nothing");
+        System.out.println("You found nothing worthy.");
         return false;
     }
     //#endif
