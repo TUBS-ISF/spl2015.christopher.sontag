@@ -31,7 +31,7 @@ public class Event2 extends Event {
 	}
 
 	@Override
-	public boolean isAffecting() {
+	public Polluter isAffecting() {
 		return false;
 	}
 
