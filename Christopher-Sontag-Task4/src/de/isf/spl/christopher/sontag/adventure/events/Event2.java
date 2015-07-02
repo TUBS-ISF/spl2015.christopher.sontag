@@ -3,6 +3,7 @@ package de.isf.spl.christopher.sontag.adventure.events;
 import de.isf.spl.christopher.sontag.adventure.Config;
 import de.isf.spl.christopher.sontag.adventure.Game;
 import de.isf.spl.christopher.sontag.adventure.Player;
+import de.isf.spl.christopher.sontag.adventure.events.extender.Polluter;
 import de.isf.spl.christopher.sontag.adventure.inventory.Item;
 
 public class Event2 extends Event {
@@ -32,7 +33,7 @@ public class Event2 extends Event {
 
 	@Override
 	public Polluter isAffecting() {
-		return false;
+		return null;
 	}
 
 }
