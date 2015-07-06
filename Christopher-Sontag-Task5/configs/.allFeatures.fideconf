@@ -1,0 +1,35 @@
+# Lists all features from the model with manual (first digit) and automatic (second digit) selection
+# 0 = deselected, 1 = selected, 2 = undefined
+21Adventure
+11Base
+21Scenes
+21Path
+12Beach
+12Mountain
+11Field
+12Forest
+21Buildings
+12Town
+12House
+21Talking
+12Quests
+12Hints
+11Introdution
+12Heronaming
+21Events
+12Chests
+12Illness
+11Fights
+11Inventory
+11Items
+11Armor
+11PlayerStats
+11Stamina
+11Health
+12Lives
+20Map
+21Visualisation
+12GUI
+20ThreeDimensional
+21DayAndNightCycle
+12Resting
