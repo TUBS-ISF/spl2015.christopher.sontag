@@ -8,7 +8,7 @@ import de.isf.spl.christopher.sontag.adventure.events.extender.Polluter;
 
 public class Player {
 
-    private static List<Illness> illnessList = new ArrayList<>();
+    private static List<Illness> illnessList = new ArrayList();
 
     public static List<Illness> getIllnessList() {
         return illnessList;
