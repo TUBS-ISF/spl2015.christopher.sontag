@@ -1,14 +1,13 @@
-package de.isf.spl.christopher.sontag.adventure;
+package main;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.isf.spl.christopher.sontag.adventure.events.Illness;
-import de.isf.spl.christopher.sontag.adventure.events.extender.Polluter;
+import events.*;
 
 public class Player {
 
-    private static List<Illness> illnessList = new ArrayList();
+    private static List<Illness> illnessList = new ArrayList<Illness>();
 
     public static List<Illness> getIllnessList() {
         return illnessList;
