@@ -1,4 +1,4 @@
-package de.isf.spl.christopher.sontag.adventure.events.extender;
+package events.extender;
 
 public abstract class Polluter {
     protected String name = "Polluter";

@@ -1,6 +1,6 @@
 package events;
 
-import events.*;
+import events.extender.*;
 
 public class Illness extends Polluter{
 
